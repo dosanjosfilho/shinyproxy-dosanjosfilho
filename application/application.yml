@@ -1,5 +1,5 @@
 proxy:
-  title: My Awesome Shiny Portal
+  title: DosAnjosFilho Shiny Portal
   port: 8080 # use Port 8080 for ShinyProxy
   
   container-wait-time: 30000 # how long should we wait for the container to spin up (30s as default as this is enough for our Shiny apps)
@@ -46,6 +46,11 @@ proxy:
       container-cmd: ["R", "-e", "shiny::runApp('/root/euler')"]
       container-image: presstofan/shiny-euler-app # this need to be replaced with your own Shiny app in production
       access-groups: admins # give specific access right to a group
+      container-network: sp-net
+    - id: biodiversity
+      display-name: BiodiversityDash
+      container-cmd: ["R", "-e", "shiny::runApp('/root/euler')"]
+      container-image: dosanjosfilho/biodiversity-dash
       container-network: sp-net
 
 server:
